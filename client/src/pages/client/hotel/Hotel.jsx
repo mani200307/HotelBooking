@@ -16,15 +16,15 @@ const Hotel = () => {
   const id = location.pathname.split('/')[2];
   const [openModal, setOpenModal] = useState(false);
 
-  const { data, loading, error } = useFetch(`https://hotel-app-lp4j.onrender.com/api/hotels/find/${id}`)
+  const { data, loading } = useFetch(`https://hotel-app-lp4j.onrender.com/api/hotels/find/${id}`)
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const { dates, options } = useContext(SearchContext);
+  const { dates } = useContext(SearchContext);
 
   const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
   function dayDifference(date1, date2) {
-    if (date1 == undefined || date2 == undefined)
+    if (date1 === undefined || date2 === undefined)
       return 0;
     const timeDiff = Math.abs(date2.getTime() - date1.getTime());
     const diffDays = Math.ceil(timeDiff / MILLISECONDS_PER_DAY);

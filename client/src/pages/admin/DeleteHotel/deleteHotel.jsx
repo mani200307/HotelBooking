@@ -1,17 +1,13 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 import Navbar from '../../../components/navbar/Navbar'
-import FormInput from '../../../components/formInput/FormInput';
 import './deleteHotel.css'
 import Header from '../../../components/adminHeader/Header';
-import Reserve from '../../../components/reserve/Reserve';
-import { Navigate, redirect, useNavigate } from 'react-router-dom';
 
 const DeleteHotel = () => {
 
   const [name, setName] = useState("");
 
-  const navigate = useNavigate();
   const handleChange = async (e) => {
     e.preventDefault();
     setName(e.target.value);

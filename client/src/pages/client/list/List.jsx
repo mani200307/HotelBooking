@@ -1,7 +1,7 @@
 import './list.css'
 import Header from '../../../components/header/Header'
 import Navbar from '../../../components/navbar/Navbar'
-import { useFetcher, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { useState } from 'react'
 import { format } from 'date-fns'
 import { DateRange } from 'react-date-range'
@@ -17,8 +17,8 @@ const List = () => {
     key: 'selection'
   }
   ] : location.state.dates);
-  const [type, setType] = useState(location.state == null || location.state.type == null ? "" : location.state.type);
-  const [options, setOptions] = useState(location.state == null || location.state.destination != null || location.state.type != null ? {
+  const [type] = useState(location.state == null || location.state.type == null ? "" : location.state.type);
+  const [options] = useState(location.state == null || location.state.destination != null || location.state.type != null ? {
     adult: 1,
     children: 0,
     room: 1
@@ -31,7 +31,7 @@ const List = () => {
   if (location.state.destination == null)
     url = `https://hotel-app-lp4j.onrender.com/api/hotels/type/${type}`
 
-  const { data, loading, error, reFetch } = useFetch(url);
+  const { data, loading, reFetch } = useFetch(url);
 
   const handleClick = () => {
     reFetch();

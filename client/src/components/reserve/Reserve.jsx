@@ -1,6 +1,6 @@
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import axios, { all } from 'axios';
+import axios from 'axios';
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SearchContext } from '../../context/SearchContext';
@@ -8,7 +8,7 @@ import useFetch from '../../hooks/useFetch';
 import './reserve.css';
 
 const Reserve = ({ setOpen, hotelId }) => {
-    const { data, loading, error } = useFetch(`https://hotel-app-lp4j.onrender.com/api/hotels/room/${hotelId}`);
+    const { data } = useFetch(`https://hotel-app-lp4j.onrender.com/api/hotels/room/${hotelId}`);
 
     const [selectedRooms, setSelectedRooms] = useState([]);
     const { dates } = useContext(SearchContext);
@@ -50,7 +50,7 @@ const Reserve = ({ setOpen, hotelId }) => {
 
 
     const handleClick = async (e) => {
-        var cost = 0;
+        // var cost = 0;
         var rooms = [];
         try {
             await Promise.all(selectedRooms.map(async (roomId) => {

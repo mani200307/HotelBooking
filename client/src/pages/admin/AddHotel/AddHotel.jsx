@@ -4,8 +4,7 @@ import Navbar from '../../../components/navbar/Navbar'
 import FormInput from '../../../components/formInput/FormInput';
 import './addHotel.css'
 import Header from '../../../components/adminHeader/Header';
-import Reserve from '../../../components/reserve/Reserve';
-import { Navigate, redirect, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const AddHotel = () => {
   const navigate = useNavigate();
@@ -91,7 +90,7 @@ const AddHotel = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await axios.post('https://hotel-app-lp4j.onrender.com/api/hotels', { values });
+    await axios.post('https://hotel-app-lp4j.onrender.com/api/hotels', { values });
     window.alert('Data inserted');
     navigate('/admin');
   }

@@ -1,11 +1,10 @@
 import { Link } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch';
 import './featured.css'
-import axios from 'axios'
 
 const Featured = () => {
 
-    const { data, loading, error } = useFetch("https://hotel-app-lp4j.onrender.com/api/hotels/findCities");
+    const { data, loading } = useFetch("https://hotel-app-lp4j.onrender.com/api/hotels/findCities");
 
     return (
         <div className='featured'>

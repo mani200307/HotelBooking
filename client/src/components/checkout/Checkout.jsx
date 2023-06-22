@@ -6,8 +6,8 @@ import './checkout.css';
 
 const Checkout = () => {
   const location = useLocation();
-  const [rooms, setRooms] = useState(location.state.rooms);
-  const [dayCnt, setDayCnt] = useState(location.state.dayCnt);
+  const [rooms] = useState(location.state.rooms);
+  const [dayCnt] = useState(location.state.dayCnt);
 
   console.log(rooms);
 

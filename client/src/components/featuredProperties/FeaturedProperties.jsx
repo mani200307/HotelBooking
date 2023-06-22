@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const FeaturedProperties = () => {
 
-    const { data, loading, error } = useFetch("https://hotel-app-lp4j.onrender.com/api/hotels?featured=true");
+    const { data, loading } = useFetch("https://hotel-app-lp4j.onrender.com/api/hotels?featured=true");
 
     return (
         <div className='fp'>

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const PropertyList = () => {
 
-    const { data, loading, error } = useFetch("https://hotel-app-lp4j.onrender.com/api/hotels/countByType");
+    const { data, loading } = useFetch("https://hotel-app-lp4j.onrender.com/api/hotels/countByType");
 
     const images = [
         'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/22/a1/9c/80/essentia-luxury-hotel.jpg?w=700&h=-1&s=1',

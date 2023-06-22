@@ -3,8 +3,7 @@ import axios from 'axios';
 import Navbar from '../../../components/navbar/Navbar'
 import FormInput from '../../../components/formInput/FormInput';
 import Header from '../../../components/adminHeader/Header';
-import Reserve from '../../../components/reserve/Reserve';
-import { Navigate, redirect, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './modifyHotel.css'
 
 const ModifyHotel = () => {
@@ -85,7 +84,7 @@ const ModifyHotel = () => {
     e.preventDefault();
     var newValues = {};
     for (let key in values) {
-      if (values[key] != "" && values[key] != 0) {
+      if (values[key] !== "" && values[key] !== 0) {
         newValues[key] = values[key];
       }
     }
