@@ -1,0 +1,19 @@
+.items {
+    width: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.item{
+    padding: 10px 20px;
+}
+
+.item:hover {
+    background-color: #003b8d;
+}
+
+.titleAdmin {
+    font-weight:700;
+    color: #ffffff;
+}

@@ -1,0 +1,17 @@
+.mainS {
+    height: 100vh;
+    color: rgb(70, 107, 40);
+    font-size: large;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(208, 255, 201);
+}
+
+.cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20%;
+}

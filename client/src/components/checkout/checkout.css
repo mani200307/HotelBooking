@@ -1,0 +1,38 @@
+.cart {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cartContainer {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2%;
+}
+
+li {
+    list-style-type: none;
+    margin-right: 20px;
+}
+
+.rName {
+    margin-right: 10px;
+    padding: 10px;
+}
+
+.price {
+    margin-right: 10px;
+}
+
+.btn {
+    border: none;
+    padding: 10px 20px;
+    background-color: #0071c2;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+}
