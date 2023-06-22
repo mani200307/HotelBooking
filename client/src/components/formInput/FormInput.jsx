@@ -7,7 +7,7 @@ const FormInput = (props) => {
         <div className='formInput'>
             <label className='inputLabel'>{label}</label>
             <input {...inputProps} onChange={onChange} className='inputText'/>
-errorMessage: "It should not include special characters",
+{/* errorMessage: "It should not include special characters", */}
               </div>
     )
 }

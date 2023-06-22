@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const FeaturedProperties = () => {
 
-    const { data, loading, error } = useFetch("http://localhost:8000/api/hotels?featured=true");
+    const { data, loading, error } = useFetch("https://hotel-app-lp4j.onrender.com/api/hotels?featured=true");
 
     return (
         <div className='fp'>
@@ -12,8 +12,8 @@ const FeaturedProperties = () => {
                 (
                     <>
                         {
-                            data.map((item) => (
-                                <Link to={`/hotels/${item._id}`} style={{color: 'inherit', textDecoration: 'none'}}>
+                            data.map((item, index) => (
+                                <Link key={index} to={`/hotels/${item._id}`} style={{color: 'inherit', textDecoration: 'none'}}>
                                     <div className='fpItem' key={item._id}>
                                         <img className='fpImg' src={item.photos[0]} alt='' />
                                         <span className='fpName'>{item.name}</span>

@@ -5,7 +5,7 @@ import axios from 'axios'
 
 const Featured = () => {
 
-    const { data, loading, error } = useFetch("http://localhost:8000/api/hotels/findCities");
+    const { data, loading, error } = useFetch("https://hotel-app-lp4j.onrender.com/api/hotels/findCities");
 
     return (
         <div className='featured'>
@@ -13,9 +13,9 @@ const Featured = () => {
                 (
                     <>
                         {
-                            data.map((cities) => (
-                                <div className='featuredItem'>
-                                    <Link to='/hotels' state={{"destination": cities.city}} style={{color: 'inherit'}}>
+                            data.map((cities, index) => (
+                                <div key={index} className='featuredItem'>
+                                    <Link to='/hotels' state={{ "destination": cities.city }} style={{ color: 'inherit' }}>
                                         <img
                                             src='https://images.unsplash.com/photo-1585409677983-0f6c41ca9c3b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8&w=1000&q=80'
                                             alt=''

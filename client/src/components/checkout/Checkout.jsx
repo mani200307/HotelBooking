@@ -13,7 +13,7 @@ const Checkout = () => {
 
   const handleClick = async () => {
     console.log(dayCnt);
-    const res = await axios.post(`http://localhost:8000/api/payment/gateway`, {rooms, dayCnt});
+    const res = await axios.post(`https://hotel-app-lp4j.onrender.com/api/payment/gateway`, { rooms, dayCnt });
     console.log(res.data.url);
     window.location = res.data.url;
   }

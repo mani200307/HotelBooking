@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const PropertyList = () => {
 
-    const { data, loading, error } = useFetch("http://localhost:8000/api/hotels/countByType");
+    const { data, loading, error } = useFetch("https://hotel-app-lp4j.onrender.com/api/hotels/countByType");
 
     const images = [
         'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/22/a1/9c/80/essentia-luxury-hotel.jpg?w=700&h=-1&s=1',
@@ -20,7 +20,7 @@ const PropertyList = () => {
                     <>
                         {data &&
                             images.map((img, i) => (
-                                <Link to='/hotels' state={{ "type": data[i]?.type }} style={{ color: 'inherit', textDecoration: 'none'}}>
+                                <Link key={i} to='/hotels' state={{ "type": data[i]?.type }} style={{ color: 'inherit', textDecoration: 'none' }}>
                                     <div key={i + 43} className='pListItem'>
                                         <img key={i + 5} className='pListImg' src={img} alt='' />
                                         <div key={i + 12} className='pListTitles'>

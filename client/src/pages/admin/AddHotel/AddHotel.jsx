@@ -91,13 +91,13 @@ const AddHotel = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await axios.post('http://localhost:8000/api/hotels', { values });
+    const res = await axios.post('https://hotel-app-lp4j.onrender.com/api/hotels', { values });
     window.alert('Data inserted');
     navigate('/admin');
   }
 
   const onChange = (e) => {
-    setValues({...values, [e.target.name] : e.target.value});
+    setValues({ ...values, [e.target.name]: e.target.value });
   }
 
   return (

@@ -27,9 +27,9 @@ const List = () => {
   const [min, setMin] = useState(undefined);
   const [max, setMax] = useState(undefined);
 
-  let url = `http://localhost:8000/api/hotels?city=${destination}&min=${min || 0}&max=${max || 900}`;
-  if(location.state.destination == null)
-    url = `http://localhost:8000/api/hotels/type/${type}`
+  let url = `https://hotel-app-lp4j.onrender.com/api/hotels?city=${destination}&min=${min || 0}&max=${max || 900}`;
+  if (location.state.destination == null)
+    url = `https://hotel-app-lp4j.onrender.com/api/hotels/type/${type}`
 
   const { data, loading, error, reFetch } = useFetch(url);
 

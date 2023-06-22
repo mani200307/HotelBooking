@@ -20,7 +20,7 @@ const Register = () => {
     const handleClick = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:8000/api/auth/register', credentials);
+            await axios.post('https://hotel-app-lp4j.onrender.com/api/auth/register', credentials);
             navigate('/login');
         } catch (err) {
             console.log('Registration unsuccessfull');

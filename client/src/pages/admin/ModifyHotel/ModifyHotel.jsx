@@ -84,23 +84,23 @@ const ModifyHotel = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     var newValues = {};
-    for(let key in values) {
-        if(values[key] != "" && values[key] != 0) {
-            newValues[key] = values[key];
-        }
+    for (let key in values) {
+      if (values[key] != "" && values[key] != 0) {
+        newValues[key] = values[key];
+      }
     }
     console.log(values.name);
     console.log(newValues);
-    const resId = await axios.get(`http://localhost:8000/api/hotels/findHotel/${values.name}`);
+    const resId = await axios.get(`https://hotel-app-lp4j.onrender.com/api/hotels/findHotel/${values.name}`);
     console.log(resId);
-    const res = await axios.put(`http://localhost:8000/api/hotels/${resId.data}`, {values});
+    const res = await axios.put(`https://hotel-app-lp4j.onrender.com/api/hotels/${resId.data}`, { values });
     console.log(res);
     window.alert('Data updated');
     navigate('/admin');
   }
 
   const onChange = (e) => {
-    setValues({...values, [e.target.name] : e.target.value});
+    setValues({ ...values, [e.target.name]: e.target.value });
   }
 
 

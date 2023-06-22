@@ -8,7 +8,7 @@ import useFetch from '../../hooks/useFetch';
 import './reserve.css';
 
 const Reserve = ({ setOpen, hotelId }) => {
-    const { data, loading, error } = useFetch(`http://localhost:8000/api/hotels/room/${hotelId}`);
+    const { data, loading, error } = useFetch(`https://hotel-app-lp4j.onrender.com/api/hotels/room/${hotelId}`);
 
     const [selectedRooms, setSelectedRooms] = useState([]);
     const { dates } = useContext(SearchContext);
@@ -67,7 +67,7 @@ const Reserve = ({ setOpen, hotelId }) => {
         }
         console.log(rooms);
         setOpen(false);
-        navigate('/checkout', { state: { rooms, dayCnt }});
+        navigate('/checkout', { state: { rooms, dayCnt } });
     }
 
     return (

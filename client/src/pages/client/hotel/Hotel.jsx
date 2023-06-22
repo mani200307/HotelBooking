@@ -16,15 +16,15 @@ const Hotel = () => {
   const id = location.pathname.split('/')[2];
   const [openModal, setOpenModal] = useState(false);
 
-  const { data, loading, error } = useFetch(`http://localhost:8000/api/hotels/find/${id}`)
-  const {user} = useContext(AuthContext);
+  const { data, loading, error } = useFetch(`https://hotel-app-lp4j.onrender.com/api/hotels/find/${id}`)
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const {dates, options} = useContext(SearchContext);
+  const { dates, options } = useContext(SearchContext);
 
-  const MILLISECONDS_PER_DAY = 1000*60*60*24;
+  const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
   function dayDifference(date1, date2) {
-    if(date1 == undefined || date2 == undefined)
+    if (date1 == undefined || date2 == undefined)
       return 0;
     const timeDiff = Math.abs(date2.getTime() - date1.getTime());
     const diffDays = Math.ceil(timeDiff / MILLISECONDS_PER_DAY);
@@ -34,7 +34,7 @@ const Hotel = () => {
   const days = dayDifference(new Date(dates[0]?.endDate), new Date(dates[0]?.startDate));
 
   const handleClick = () => {
-    if(user) {
+    if (user) {
       setOpenModal(true);
     } else {
       navigate('/login');
@@ -49,7 +49,7 @@ const Hotel = () => {
         loading ? ('loading') : (
           <div className='hotelContainer'>
             <div className='hotelWrapper'>
-              <button onClick={ handleClick } className='bookNow'>Reserve or Book Now!</button>
+              <button onClick={handleClick} className='bookNow'>Reserve or Book Now!</button>
               <h1 className='hotelTitle'>{data.name}</h1>
               <div className='hotelAddress'>
                 <FontAwesomeIcon icon={faLocationDot} />
@@ -73,7 +73,7 @@ const Hotel = () => {
                   <h1 className='hotelTitle'>{data.title}</h1>
                   <p className='hotelDesc'>
                     {data.desc}
-                   </p>
+                  </p>
                 </div>
                 <div className='hotelDetailsPrice'>
                   <h1>Perfect for {days}-night stay!</h1>
@@ -81,7 +81,7 @@ const Hotel = () => {
                     Located in thereal heart of Krakov, this is an excellent location of score 9.8!
                   </span>
                   <h2>
-                    <b>${days * data.cheapestPrice }</b> ({days} nights)
+                    <b>${days * data.cheapestPrice}</b> ({days} nights)
                   </h2>
                   <button onClick={handleClick}>Reserve or Book Now!</button>
                 </div>
@@ -89,7 +89,7 @@ const Hotel = () => {
             </div>
             <Footer />
           </div>
-      )}
+        )}
       {openModal && <Reserve setOpen={setOpenModal} hotelId={id} />}
     </div>
   )
