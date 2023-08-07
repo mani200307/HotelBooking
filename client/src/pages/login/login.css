@@ -8,13 +8,12 @@
 .lContainer {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
 }
 
-
 .lInput {
-    height: 30px;
-    padding: 10px;
+    height: 25px;
+    padding: 15px;
 }
 
 .lButton {
@@ -25,6 +24,7 @@
     font-weight: bold;
     cursor: pointer;
     border-radius: 5px;
+    font-size: 15px;
 }
 
 .lButton:disabled {
