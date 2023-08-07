@@ -2,19 +2,22 @@
     width: 100%;
     max-width: 1024px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     gap: 20px;
 }
 
 .pListItem{
     flex: 1;
+    width: fit-content;
     border-radius: 10px;
     overflow: hidden;
     cursor: pointer;
 }
 
 .pListImg{
-    width: 100%;
+    object-fit: cover;
+    width: 15rem;
     height: 150px;
     object-fit: cover;
 }

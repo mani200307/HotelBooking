@@ -1,7 +1,18 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './searchItem.css'
+import { useEffect } from 'react'
 
-const SearchItem = ({ item }) => {
+const SearchItem = ({ item, dates }) => {
+    const navigate = useNavigate();
+
+    const gotoHotel = (itemId) => {
+        console.log(itemId);
+        navigate(`/hotels/${itemId}`, { state: { dates } })
+    }
+
+    useEffect(() => {
+        console.log(dates);
+    }, [])
 
     return (
         <div className='searchItem'>
@@ -27,11 +38,11 @@ const SearchItem = ({ item }) => {
                     <button>{item.rating}</button>
                 </div>}
                 <div className='siDetailTexts'>
-                    <span className='siPrice'>${item.cheapestPrice}</span>
+                    <span className='siPrice'>${item.cheapestPrice} <span style={{ fontSize: '15px' }}>per night</span></span>
                     <span className='siTaxOp'>Includes taxes and fees</span>
-                    <Link to={`/hotels/${item._id}`}>
+                    <div onClick={() => { gotoHotel(item._id) }}>
                         <button className='siCheckButton'>See availability</button>
-                    </Link>
+                    </div>
                 </div>
             </div>
         </div>

@@ -54,20 +54,16 @@ const Reserve = ({ setOpen, hotelId }) => {
         var rooms = [];
         try {
             await Promise.all(selectedRooms.map(async (roomId) => {
-                const room = await axios.get(`http://localhost:8000/api/rooms/roomnum/${roomId}`);
+                const room = await axios.get(`https://hotel-app-lp4j.onrender.com/api/rooms/roomnum/${roomId}`);
                 console.log(room.data);
                 rooms.push(room.data);
             }));
-            // await Promise.all(selectedRooms.map((roomId) => {
-            //     // const res = axios.put(`http://localhost:8000/api/rooms/availability/${roomId}`, { dates: alldates });
-            //     // return res.data;
-            // }));
+            navigate('/checkout', { state: { rooms, dayCnt, alldates, selectedRooms } });
         } catch (err) {
-
+            console.log(err);
         }
         console.log(rooms);
         setOpen(false);
-        navigate('/checkout', { state: { rooms, dayCnt } });
     }
 
     return (
@@ -75,8 +71,8 @@ const Reserve = ({ setOpen, hotelId }) => {
             <div className="rContainer">
                 <FontAwesomeIcon icon={faCircleXmark} className='rClose' onClick={() => setOpen(false)} />
                 <span>Select your rooms:</span>
-                {data.map((item) => (
-                    <div className="rItem">
+                {data.map((item, i) => (
+                    <div key={i} className="rItem">
                         <div className="rItemInfo">
                             <div className="rTitle">{item?.title}</div>
                             <div className="rDesc">{item?.desc}</div>
@@ -84,8 +80,8 @@ const Reserve = ({ setOpen, hotelId }) => {
                             <div className="rPrice">{item?.price}</div>
                         </div>
                         <div className="rSelectRooms">
-                            {item?.roomNumbers.map((roomNumber) => (
-                                <div className="room">
+                            {item?.roomNumbers.map((roomNumber, j) => (
+                                <div key={j} className="room">
                                     <label>{roomNumber?.number}</label>
                                     <input type='checkbox' value={roomNumber?._id} onChange={handleSelect} disabled={!isAvailable(roomNumber)} />
                                 </div>

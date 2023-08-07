@@ -2,16 +2,17 @@ import './list.css'
 import Header from '../../../components/header/Header'
 import Navbar from '../../../components/navbar/Navbar'
 import { useLocation } from 'react-router-dom'
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { format } from 'date-fns'
 import { DateRange } from 'react-date-range'
 import SearchItem from '../../../components/searchItem/SearchItem'
 import useFetch from '../../../hooks/useFetch'
+import { SearchContext } from '../../../context/SearchContext'
 
 const List = () => {
   const location = useLocation();
   const [destination, setDestination] = useState(location.state == null || location.state.type != null ? "" : location.state.destination);
-  const [dates, setDates] = useState(location.state == null || location.state.destination != null || location.state.type != null ? [{
+  const [dates, setDates] = useState(location.state == null || location.state.dates == null ? [{
     startDate: new Date(),
     endDate: new Date(),
     key: 'selection'
@@ -31,9 +32,12 @@ const List = () => {
   if (location.state.destination == null)
     url = `https://hotel-app-lp4j.onrender.com/api/hotels/type/${type}`
 
+  const { dispatch } = useContext(SearchContext);
+
   const { data, loading, reFetch } = useFetch(url);
 
   const handleClick = () => {
+    dispatch({ type: "NEW_SEARCH", payload: { destination, dates, options } })
     reFetch();
   }
 
@@ -63,18 +67,6 @@ const List = () => {
             <div className='lsItem'>
               <label>Options</label>
               <div className='lsOptions'>
-                <div className='lsOptionItem'>
-                  <span className='lsOptionText'>
-                    Min price <small>per night</small>
-                  </span>
-                  <input type='number' onChange={e => setMin(e.target.value)} className='lsOptionInput' />
-                </div>
-                <div className='lsOptionItem'>
-                  <span className='lsOptionText'>
-                    Max price <small>per night</small>
-                  </span>
-                  <input type='number' onChange={e => setMax(e.target.value)} className='lsOptionInput' />
-                </div>
                 <div className='lsOptionItem'>
                   <span className='lsOptionText'>
                     Adult

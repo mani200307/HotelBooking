@@ -8,16 +8,19 @@
 
 .fpItem{
     flex: 1;
+    width: fit-content;
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
 .fpImg{
-    width: 100%;
+    width: 30rem;
+    object-fit: cover;
     max-width: 600px;
     height: 250px;
     object-fit: cover;
+    border-radius: 10px;
 }
 
 .fpName{

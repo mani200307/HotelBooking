@@ -2,8 +2,8 @@
     width: 100%;
     max-width: 1024px;
     display: flex;
-    justify-content: space-between;
-    gap: 20px;
+    justify-content: center;
+    gap: 40px;
     z-index: 1;
 }
 

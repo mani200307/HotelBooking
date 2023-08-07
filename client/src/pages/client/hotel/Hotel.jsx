@@ -42,7 +42,7 @@ const Hotel = () => {
   }
 
   return (
-    <div>
+    <div style={{overflow: 'hidden'}}>
       <Navbar />
       <Header type='list' />
       {
@@ -62,8 +62,8 @@ const Hotel = () => {
                 Book a stay over ${data.cheapestPrice} at this property and get a free airport taxi
               </span>
               <div className='hotelImages'>
-                {data.photos?.map(photo => (
-                  <div className='hotelImgWrapper'>
+                {data.photos?.map((photo, i) => (
+                  <div key={i} className='hotelImgWrapper'>
                     <img src={photo} alt='' className='hotelImg' />
                   </div>
                 ))}
