@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import useFetch from '../../../hooks/useFetch'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { SearchContext } from '../../../context/SearchContext'
 import { AuthContext } from '../../../context/AuthContext'
 import Reserve from '../../../components/reserve/Reserve'
@@ -19,6 +19,15 @@ const Hotel = () => {
   const { data, loading } = useFetch(`https://hotel-app-lp4j.onrender.com/api/hotels/find/${id}`)
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [price, setPrice] = useState(0);
+
+  useEffect(() => {
+    console.log(data);
+    if (data)
+      setPrice(data?.cheapestPrice);
+  }, [data]);
+
+  console.log(price);
 
   const { dates } = useContext(SearchContext);
 
@@ -42,14 +51,14 @@ const Hotel = () => {
   }
 
   return (
-    <div style={{overflow: 'hidden'}}>
+    <div style={{ overflow: 'hidden' }}>
       <Navbar />
       <Header type='list' />
       {
         loading ? ('loading') : (
           <div className='hotelContainer'>
             <div className='hotelWrapper'>
-              <button onClick={handleClick} className='bookNow'>Reserve or Book Now!</button>
+              <button style={{ display: days == 0 ? 'none' : '' }} onClick={handleClick} className='bookNow'>Reserve or Book Now!</button>
               <h1 className='hotelTitle'>{data.name}</h1>
               <div className='hotelAddress'>
                 <FontAwesomeIcon icon={faLocationDot} />
@@ -75,7 +84,7 @@ const Hotel = () => {
                     {data.desc}
                   </p>
                 </div>
-                <div className='hotelDetailsPrice'>
+                <div style={{ display: days == 0 ? 'none' : '' }} className='hotelDetailsPrice'>
                   <h1>Perfect for {days}-night stay!</h1>
                   <span>
                     Located in thereal heart of Krakov, this is an excellent location of score 9.8!
@@ -83,14 +92,14 @@ const Hotel = () => {
                   <h2>
                     <b>${days * data.cheapestPrice}</b> ({days} nights)
                   </h2>
-                  <button onClick={handleClick}>Reserve or Book Now!</button>
+                  <button disabled={days == 0} onClick={handleClick}>Reserve or Book Now!</button>
                 </div>
               </div>
             </div>
             <Footer />
           </div>
         )}
-      {openModal && <Reserve setOpen={setOpenModal} hotelId={id} />}
+      {openModal && <Reserve setOpen={setOpenModal} style={{ display: price == 0 ? 'none' : '' }} cheapestPrice={price} hotelId={id} />}
     </div>
   )
 }

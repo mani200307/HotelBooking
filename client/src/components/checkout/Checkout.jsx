@@ -10,8 +10,7 @@ const Checkout = () => {
   const [dayCnt] = useState(location.state.dayCnt);
   const [alldates] = useState(location.state.alldates);
   const [selectedRooms] = useState(location.state.selectedRooms);
-
-  console.log(rooms);
+  const [cheapestPrice] = useState(location.state.cheapestPrice);
 
   const handleClick = async () => {
     console.log(dayCnt);
@@ -19,7 +18,8 @@ const Checkout = () => {
       const res = axios.put(`http://localhost:8000/api/rooms/availability/${roomId}`, { dates: alldates });
       return res.data;
     }));
-    const res = await axios.post(`https://hotel-app-lp4j.onrender.com/api/payment/gateway`, { rooms, dayCnt });
+    console.log(cheapestPrice * dayCnt);
+    const res = await axios.post(`https://hotel-app-lp4j.onrender.com/api/payment/gateway`, { rooms, cheapestPrice, dayCnt });
     console.log(res.data.url);
     window.location = res.data.url;
   }
@@ -30,7 +30,7 @@ const Checkout = () => {
         <h1 className='titleTxt'>Summary</h1>
         <ul>
           {rooms.map((room) =>
-            <li><span className='rName'>{room.roomName[0]}</span>    <span className='price'>{room.cost}$</span><br></br></li>
+            <li><span className='rName'>{room.roomName[0]}</span>    <span className='price'>${cheapestPrice * dayCnt}</span><br></br></li>
           )}
         </ul>
         <button className='btn' onClick={handleClick}>Checkout</button>

@@ -7,7 +7,7 @@ import { SearchContext } from '../../context/SearchContext';
 import useFetch from '../../hooks/useFetch';
 import './reserve.css';
 
-const Reserve = ({ setOpen, hotelId }) => {
+const Reserve = ({ setOpen, hotelId, cheapestPrice }) => {
     const { data } = useFetch(`https://hotel-app-lp4j.onrender.com/api/hotels/room/${hotelId}`);
 
     const [selectedRooms, setSelectedRooms] = useState([]);
@@ -58,7 +58,7 @@ const Reserve = ({ setOpen, hotelId }) => {
                 console.log(room.data);
                 rooms.push(room.data);
             }));
-            navigate('/checkout', { state: { rooms, dayCnt, alldates, selectedRooms } });
+            navigate('/checkout', { state: { rooms, dayCnt, cheapestPrice, alldates, selectedRooms } });
         } catch (err) {
             console.log(err);
         }
@@ -77,7 +77,7 @@ const Reserve = ({ setOpen, hotelId }) => {
                             <div className="rTitle">{item?.title}</div>
                             <div className="rDesc">{item?.desc}</div>
                             <div className="rMax">Max People: <b>{item?.maxPeople}</b></div>
-                            <div className="rPrice">{item?.price}</div>
+                            <div className="rPrice">${cheapestPrice * dayCnt}</div>
                         </div>
                         <div className="rSelectRooms">
                             {item?.roomNumbers.map((roomNumber, j) => (

@@ -5,7 +5,9 @@ const items = [];
 
 export const paymentStripe = async (req, res, next) => {
     const items = req.body.rooms;
+    const cheapestPrice = req.body.cheapestPrice;
     const dayCnt = req.body.dayCnt;
+    const price = cheapestPrice * dayCnt;
     const session = await stripe.checkout.sessions.create({
         payment_method_types: ["card"],
         line_items: items.map((item) => {
@@ -15,7 +17,7 @@ export const paymentStripe = async (req, res, next) => {
                     product_data: {
                         name: item.roomName[0],
                     },
-                    unit_amount: item.cost * 100 * dayCnt,
+                    unit_amount: price,
                 },
                 quantity: 1
             }
