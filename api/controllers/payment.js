@@ -17,7 +17,7 @@ export const paymentStripe = async (req, res, next) => {
                     product_data: {
                         name: item.roomName[0],
                     },
-                    unit_amount: price,
+                    unit_amount: price * 100,
                 },
                 quantity: 1
             }
