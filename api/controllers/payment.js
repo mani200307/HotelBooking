@@ -22,8 +22,8 @@ export const paymentStripe = async (req, res, next) => {
             return prod;
         }),
         mode: "payment",
-        success_url: "http://localhost:3000/success",
-        cancel_url: "http://localhost:3000/cancel",
+        success_url: "https://hotel-app-lp4j.onrender.com/success",
+        cancel_url: "https://hotel-app-lp4j.onrender.com/cancel",
     });
     res.status(200).json({ url: session.url });
 }
